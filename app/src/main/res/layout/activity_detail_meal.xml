@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".DetailMeal">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,19 +16,9 @@
             android:id="@+id/imageMeal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:src="@drawable/tes"
+            
             />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="19dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="TextView" />
 
         <TextView
             android:id="@+id/judul"
@@ -36,7 +27,34 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="24dp"
+            android:textSize="25sp"
+            android:textStyle="bold"
             android:text="Judul" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="24dp">
+            <TextView
+                android:id="@+id/area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_background"
+                android:paddingTop="1dp"
+                android:paddingBottom="4dp"
+                android:layout_marginRight="5dp"
+                android:text="area"/>
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_background"
+                android:paddingTop="1dp"
+                android:paddingBottom="4dp"
+                android:text="category"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView6"
@@ -45,6 +63,8 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginRight="8dp"
+            android:fontFamily="serif"
+            android:textSize="20sp"
             android:text="Instruction" />
 
         <TextView
@@ -64,6 +84,8 @@
             android:layout_marginTop="24dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="16dp"
+            android:fontFamily="serif"
+            android:textSize="20sp"
             android:text="Ingredient" />
 
         <LinearLayout

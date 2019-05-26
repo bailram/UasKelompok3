@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,10 +25,10 @@ public class DetailMeal extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
     private MealService service;
     private List<Meal_> meals;
-    TextView textView,judul, bahan1, bahan2, bahan3, bahan4, bahan5, bahan6, bahan7, bahan8, bahan9,
+    TextView judul, bahan1, bahan2, bahan3, bahan4, bahan5, bahan6, bahan7, bahan8, bahan9,
             bahan10, bahan11, bahan12, bahan13, bahan14, bahan15, measure1, measure2, measure3,
             measure4, measure5, measure6, measure7, measure8, measure9, measure10, measure11,
-            measure12, measure13, measure14, measure15, instruction;
+            measure12, measure13, measure14, measure15, instruction, area, category;
     ImageView imageMeal,image1, image2, image3, image4, image5, image6, image7, image8, image9,
             image10, image11, image12, image13, image14,  image15;
 
@@ -36,9 +38,10 @@ public class DetailMeal extends AppCompatActivity {
         setContentView(R.layout.activity_detail_meal);
         connectComponent();
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
         Intent intent = getIntent();
         String id_meal = intent.getStringExtra("ID_MEAL");
-        textView.setText(id_meal);
 
         service = ServiceGenerator.createService(MealService.class);
         Call<Meal> call = service.getPostMeal(id_meal);
@@ -58,8 +61,9 @@ public class DetailMeal extends AppCompatActivity {
     }
 
     private void connectComponent(){
-        textView = findViewById(R.id.textView);
         judul = findViewById(R.id.judul);
+        area = findViewById(R.id.area);
+        category = findViewById(R.id.category);
         bahan1 = findViewById(R.id.bahan1);
         bahan2 = findViewById(R.id.bahan2);
         bahan3 = findViewById(R.id.bahan3);
@@ -112,6 +116,8 @@ public class DetailMeal extends AppCompatActivity {
     private void setComponent(){
         Meal_ meal = meals.get(0);
         judul.setText(meal.getStrMeal());
+        area.setText(meal.getStrArea());
+        category.setText(meal.getStrCategory());
         bahan1.setText((meal.getStrIngredient1() != null) ? meal.getStrIngredient1() : "");
         bahan2.setText((meal.getStrIngredient2() != null) ? meal.getStrIngredient2() : "");
         bahan3.setText((meal.getStrIngredient3() != null) ? meal.getStrIngredient3() : "");
