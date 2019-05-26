@@ -44,9 +44,10 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
                 .placeholder(android.R.drawable.sym_def_app_icon)
                 .error(android.R.drawable.sym_def_app_icon)
                 .into(mealViewHolder.mealImage);
+        mealViewHolder.mealImage.setScaleType(ImageView.ScaleType.FIT_XY);
         mealViewHolder.title.setText(meals.get(i).getStrMeal());
-        mealViewHolder.category.setText(meals.get(i).getStrCategory());
-        mealViewHolder.intruction.setText(meals.get(i).getStrInstructions());
+//        mealViewHolder.category.setText(meals.get(i).getStrCategory());
+//        mealViewHolder.intruction.setText(meals.get(i).getStrInstructions());
     }
 
     @Override
@@ -57,16 +58,16 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
     public class MealViewHolder extends RecyclerView.ViewHolder {
         LinearLayout mealLayout;
         TextView title;
-        TextView category;
-        TextView intruction;
+//        TextView category;
+//        TextView intruction;
         ImageView mealImage;
         public MealViewHolder(@NonNull final View itemView) {
             super(itemView);
             mealLayout = itemView.findViewById(R.id.meal_layout);
             mealImage = itemView.findViewById(R.id.meal_image);
             title = itemView.findViewById(R.id.title);
-            category = itemView.findViewById(R.id.category);
-            intruction = itemView.findViewById(R.id.instruction);
+//            category = itemView.findViewById(R.id.category);
+//            intruction = itemView.findViewById(R.id.instruction);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
