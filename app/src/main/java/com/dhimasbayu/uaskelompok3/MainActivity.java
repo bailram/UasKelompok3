@@ -24,7 +24,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final String TAG = MainActivity.class.getName();
     private RecyclerView recyclerView;
     private MealAdapter adapter;
@@ -41,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         service = ServiceGenerator.createService(MealService.class);
-        Call<Meal> call = service.getPostMeal(52831);
-        //Call<Meal> call = service.getJapaneseMeal();
+        //Call<Meal> call = service.getPostMeal(52831);
+        Call<Meal> call = service.getJapaneseMeal();
         call.enqueue(new Callback<Meal>() {
             @Override
             public void onResponse(Call<Meal> call, Response<Meal> response) {

@@ -1,6 +1,7 @@
 package com.dhimasbayu.uaskelompok3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -59,14 +60,21 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         TextView category;
         TextView intruction;
         ImageView mealImage;
-        public MealViewHolder(@NonNull View itemView) {
+        public MealViewHolder(@NonNull final View itemView) {
             super(itemView);
             mealLayout = itemView.findViewById(R.id.meal_layout);
             mealImage = itemView.findViewById(R.id.meal_image);
             title = itemView.findViewById(R.id.title);
             category = itemView.findViewById(R.id.category);
             intruction = itemView.findViewById(R.id.instruction);
-            Toast.makeText(itemView.getContext(),"WOOOOOOIIIII",Toast.LENGTH_SHORT);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(itemView.getContext(),DetailMeal.class);
+                    intent.putExtra("ID_MEAL", meals.get(getAdapterPosition()).getIdMeal());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }
