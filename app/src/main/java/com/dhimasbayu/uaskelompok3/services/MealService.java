@@ -11,8 +11,14 @@ public interface MealService {
     @GET("v1/1/random.php")
     Call<Meal> getRandomMeal();
 
+    @GET("v1/1/list.php?a=list")
+    Call<Meal> getAreaList();
+
     @GET("v1/1/filter.php?a=Japanese")
     Call<Meal> getJapaneseMeal();
+
+    @GET("v1/1/filter.php")
+    Call<Meal> getMealByArea(@Query("a") String area);
 
     @GET("v1/1/lookup.php")
     Call<Meal> getPostMeal(@Query("i") String id);
