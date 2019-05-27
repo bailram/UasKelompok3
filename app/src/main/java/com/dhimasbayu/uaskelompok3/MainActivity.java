@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private AreaAdapter adapterArea;
     private MealService service;
     private List<Meal_> meals;
-    Button button, buttonIngridient;
+//  Button button, buttonIngridient;
+    TextView button, buttonIngridient;
     private List<Meal_> area;
     String filterCategory, filterArea, filterIngridient;
 
