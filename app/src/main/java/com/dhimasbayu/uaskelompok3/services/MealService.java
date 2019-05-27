@@ -1,7 +1,7 @@
 package com.dhimasbayu.uaskelompok3.services;
 
+import com.dhimasbayu.uaskelompok3.model.CategoryList;
 import com.dhimasbayu.uaskelompok3.model.Meal;
-import com.dhimasbayu.uaskelompok3.model.Meal_;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -19,4 +19,7 @@ public interface MealService {
 
     @GET("v1/1/search.php")
     Call<Meal> getSearchMeal(@Query("s") String keyword);
+
+    @GET("v1/1/categories.php")
+    Call<CategoryList> getCategory();
 }
