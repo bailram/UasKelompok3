@@ -30,11 +30,16 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView,areaRecyclerView;
     private MealAdapter adapter;
+    private AreaAdapter adapterArea;
     private MealService service;
     private List<Meal_> meals;
+<<<<<<< HEAD
     Button button;
+=======
+    private List<Meal_> area;
+>>>>>>> backup
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.recycler_view);
+        areaRecyclerView = findViewById(R.id.recycler_area);
         //recyclerView.setHasFixedSize(true);
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         button.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         service = ServiceGenerator.createService(MealService.class);
+        setupArea();
         //Call<Meal> call = service.getPostMeal(52831);
         Call<Meal> call = service.getJapaneseMeal();
         call.enqueue(new Callback<Meal>() {
@@ -66,6 +73,28 @@ public class MainActivity extends AppCompatActivity {
                 adapter = new MealAdapter(meals,R.layout.list_item_meal,MainActivity.this);
                 //recyclerView.setAdapter(new MealAdapter(meals,R.layout.list_item_meal, getApplicationContext()));
                 recyclerView.setAdapter(adapter);
+                Log.d(TAG, "Data Berhasil dimuat");
+            }
+
+            @Override
+            public void onFailure(Call<Meal> call, Throwable t) {
+                Log.e(TAG, t.toString());
+            }
+        });
+
+        //setupArea();
+    }
+
+    private void setupArea(){
+        Call<Meal> call = service.getAreaList();
+        call.enqueue(new Callback<Meal>() {
+            @Override
+            public void onResponse(Call<Meal> call, Response<Meal> response) {
+                area = response.body().getMeals();
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                areaRecyclerView.setLayoutManager(layoutManager);
+                adapterArea = new AreaAdapter(area, R.layout.list_item_area, MainActivity.this);
+                areaRecyclerView.setAdapter(adapterArea);
                 Log.d(TAG, "Data Berhasil dimuat");
             }
 
