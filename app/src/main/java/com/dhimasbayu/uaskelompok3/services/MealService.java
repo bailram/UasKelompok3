@@ -1,6 +1,7 @@
 package com.dhimasbayu.uaskelompok3.services;
 
 import com.dhimasbayu.uaskelompok3.model.CategoryList;
+import com.dhimasbayu.uaskelompok3.model.Inggridient;
 import com.dhimasbayu.uaskelompok3.model.Meal;
 
 import retrofit2.Call;
@@ -13,6 +14,9 @@ public interface MealService {
 
     @GET("v1/1/list.php?a=list")
     Call<Meal> getAreaList();
+
+    @GET("v1/1/list.php?i=list")
+    Call<Inggridient> getIngridientList();
 
     @GET("v1/1/filter.php?a=Japanese")
     Call<Meal> getJapaneseMeal();

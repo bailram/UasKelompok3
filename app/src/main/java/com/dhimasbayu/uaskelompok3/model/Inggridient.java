@@ -1,21 +1,19 @@
-
 package com.dhimasbayu.uaskelompok3.model;
-
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Meal {
-
+public class Inggridient {
     @SerializedName("meals")
     @Expose
-    private List<Meal_> meals = null;
+    private List<Inggridient_> meals = null;
 
-    public List<Meal_> getMeals() {
+    public List<Inggridient_> getMeals() {
         return meals;
     }
 
-    public void setMeals(List<Meal_> meals) {
+    public void setMeals(List<Inggridient_> meals) {
         this.meals = meals;
     }
 }
+

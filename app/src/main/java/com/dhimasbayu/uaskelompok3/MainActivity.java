@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private AreaAdapter adapterArea;
     private MealService service;
     private List<Meal_> meals;
-    Button button;
+    Button button, buttonIngridient;
     private List<Meal_> area;
     String filterCategory, filterArea, filterIngridient;
 
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = findViewById(R.id.btn_category);
+        buttonIngridient = findViewById(R.id.btn_ingridient);
 
         Intent intent = getIntent();
         filterCategory = intent.getStringExtra("CATEGORY");
@@ -60,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent  = new Intent(MainActivity.this,ListCategory.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonIngridient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(MainActivity.this,IndrigientList.class);
                 startActivity(intent);
             }
         });
