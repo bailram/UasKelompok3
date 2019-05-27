@@ -20,6 +20,12 @@ public interface MealService {
     @GET("v1/1/filter.php")
     Call<Meal> getMealByArea(@Query("a") String area);
 
+    @GET("v1/1/filter.php")
+    Call<Meal> getMealByCategory(@Query("c") String category);
+
+    @GET("v1/1/filter.php")
+    Call<Meal> getMealByIngridient(@Query("i") String ingridient);
+
     @GET("v1/1/lookup.php")
     Call<Meal> getPostMeal(@Query("i") String id);
 

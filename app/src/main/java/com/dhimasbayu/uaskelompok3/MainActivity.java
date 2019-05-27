@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
     private AreaAdapter adapterArea;
     private MealService service;
     private List<Meal_> meals;
-<<<<<<< HEAD
     Button button;
-=======
     private List<Meal_> area;
->>>>>>> backup
+    String filterCategory, filterArea, filterIngridient;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         button = findViewById(R.id.btn_category);
 
+        Intent intent = getIntent();
+        filterCategory = intent.getStringExtra("CATEGORY");
+        filterArea = intent.getStringExtra("AREA");
+        filterIngridient = intent.getStringExtra("INGRIDIENT");
 
         recyclerView = findViewById(R.id.recycler_view);
         areaRecyclerView = findViewById(R.id.recycler_area);
@@ -63,25 +67,86 @@ public class MainActivity extends AppCompatActivity {
         service = ServiceGenerator.createService(MealService.class);
         setupArea();
         //Call<Meal> call = service.getPostMeal(52831);
-        Call<Meal> call = service.getJapaneseMeal();
-        call.enqueue(new Callback<Meal>() {
-            @Override
-            public void onResponse(Call<Meal> call, Response<Meal> response) {
-                meals = response.body().getMeals();
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-                recyclerView.setLayoutManager(layoutManager);
-                adapter = new MealAdapter(meals,R.layout.list_item_meal,MainActivity.this);
-                //recyclerView.setAdapter(new MealAdapter(meals,R.layout.list_item_meal, getApplicationContext()));
-                recyclerView.setAdapter(adapter);
-                Log.d(TAG, "Data Berhasil dimuat");
-            }
+        //if(!filterCategory.equalsIgnoreCase("")){
+         if(filterCategory != null){
+            Call<Meal> call = service.getMealByCategory(filterCategory);
+            call.enqueue(new Callback<Meal>() {
+                @Override
+                public void onResponse(Call<Meal> call, Response<Meal> response) {
+                    meals = response.body().getMeals();
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+                    recyclerView.setLayoutManager(layoutManager);
+                    adapter = new MealAdapter(meals,R.layout.list_item_meal,MainActivity.this);
+                    //recyclerView.setAdapter(new MealAdapter(meals,R.layout.list_item_meal, getApplicationContext()));
+                    recyclerView.setAdapter(adapter);
+                    Log.d(TAG, "Data Berhasil dimuat");
+                }
 
-            @Override
-            public void onFailure(Call<Meal> call, Throwable t) {
-                Log.e(TAG, t.toString());
-            }
-        });
+                @Override
+                public void onFailure(Call<Meal> call, Throwable t) {
+                    Log.e(TAG, t.toString());
+                }
+            });
+        //}else if(!filterArea.equalsIgnoreCase("")){
+         }else if(filterArea != null){
+            Call<Meal> call = service.getMealByArea(filterArea);
+            call.enqueue(new Callback<Meal>() {
+                @Override
+                public void onResponse(Call<Meal> call, Response<Meal> response) {
+                    meals = response.body().getMeals();
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+                    recyclerView.setLayoutManager(layoutManager);
+                    adapter = new MealAdapter(meals,R.layout.list_item_meal,MainActivity.this);
+                    //recyclerView.setAdapter(new MealAdapter(meals,R.layout.list_item_meal, getApplicationContext()));
+                    recyclerView.setAdapter(adapter);
+                    Log.d(TAG, "Data Berhasil dimuat");
+                }
 
+                @Override
+                public void onFailure(Call<Meal> call, Throwable t) {
+                    Log.e(TAG, t.toString());
+                }
+            });
+        //}else if(!filterIngridient.equalsIgnoreCase("")) {
+         }else if(filterIngridient != null) {
+            Call<Meal> call = service.getMealByIngridient(filterIngridient);
+            call.enqueue(new Callback<Meal>() {
+                @Override
+                public void onResponse(Call<Meal> call, Response<Meal> response) {
+                    meals = response.body().getMeals();
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+                    recyclerView.setLayoutManager(layoutManager);
+                    adapter = new MealAdapter(meals,R.layout.list_item_meal,MainActivity.this);
+                    //recyclerView.setAdapter(new MealAdapter(meals,R.layout.list_item_meal, getApplicationContext()));
+                    recyclerView.setAdapter(adapter);
+                    Log.d(TAG, "Data Berhasil dimuat");
+                }
+
+                @Override
+                public void onFailure(Call<Meal> call, Throwable t) {
+                    Log.e(TAG, t.toString());
+                }
+            });
+        }else{
+            Call<Meal> call = service.getJapaneseMeal();
+            call.enqueue(new Callback<Meal>() {
+                @Override
+                public void onResponse(Call<Meal> call, Response<Meal> response) {
+                    meals = response.body().getMeals();
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+                    recyclerView.setLayoutManager(layoutManager);
+                    adapter = new MealAdapter(meals,R.layout.list_item_meal,MainActivity.this);
+                    //recyclerView.setAdapter(new MealAdapter(meals,R.layout.list_item_meal, getApplicationContext()));
+                    recyclerView.setAdapter(adapter);
+                    Log.d(TAG, "Data Berhasil dimuat");
+                }
+
+                @Override
+                public void onFailure(Call<Meal> call, Throwable t) {
+                    Log.e(TAG, t.toString());
+                }
+            });
+        }
         //setupArea();
     }
 
